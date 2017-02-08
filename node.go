@@ -6,6 +6,7 @@ package node
 
 type NodeType uint8
 
+// NodeType
 const (
 	NodeTypeDirect NodeType = iota
 	NodeTypeRandom
