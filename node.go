@@ -14,9 +14,13 @@ const (
 )
 
 type Node struct {
-	Id     string
+	// for recognize node with input id
+	Id string
+	// node's probability weight
 	Weight uint32
-	Value  interface{}
+	// node's value
+	Value interface{}
+
 	number uint32
 }
 
