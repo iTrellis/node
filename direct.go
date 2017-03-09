@@ -18,7 +18,8 @@ type direct struct {
 	sync.RWMutex
 }
 
-func NewDirect(name string) NodeManager {
+// NewDirect get direct node manager
+func NewDirect(name string) Manager {
 	if name == "" {
 		return nil
 	}
@@ -73,7 +74,7 @@ func (p *direct) removeByID(id string) {
 	if p.IsEmpty() {
 		return
 	}
-	if p.node.Id == id {
+	if p.node.ID == id {
 		p.node = nil
 	}
 	return

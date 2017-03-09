@@ -38,12 +38,12 @@ func TestRandom(t *testing.T) {
 
 		Convey("when initial normal nodes and remove nodes", func() {
 			r.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 2,
 				Value:  "test1",
 			})
 			r.Add(&node.Node{
-				Id:     "2",
+				ID:     "2",
 				Weight: 10,
 				Value:  "test2",
 			})
@@ -55,14 +55,14 @@ func TestRandom(t *testing.T) {
 				So(ok, ShouldBeFalse)
 			})
 		})
-		Convey("when initial normal nodes and remove all nodes by ids", func() {
+		Convey("when initial normal nodes and remove all nodes by IDs", func() {
 			r.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 2,
 				Value:  "test1",
 			})
 			r.Add(&node.Node{
-				Id:     "2",
+				ID:     "2",
 				Weight: 10,
 				Value:  "test2",
 			})
@@ -86,7 +86,7 @@ func TestRandom(t *testing.T) {
 		})
 		Convey("add new nodes", func() {
 			r.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 2,
 				Value:  "test1",
 			})
@@ -102,21 +102,21 @@ func TestRandom(t *testing.T) {
 	Convey("get normal node", t, func() {
 		r := node.NewRadmon("random")
 		r.Add(&node.Node{
-			Id:     "1",
+			ID:     "1",
 			Weight: 20,
 			Value:  "test1",
 		})
 		r.Add(&node.Node{
-			Id:     "2",
+			ID:     "2",
 			Weight: 80,
 			Value:  "test2",
 		})
 		r.PrintNodes()
 		Convey("test run times", func() {
-			Convey("id_1:id_2 vnode_number 20:80", func() {
+			Convey("ID_1:ID_2 vnode_number 20:80", func() {
 				for i := 0; i < runTimes; i++ {
 					node, _ := r.NodeFor("")
-					mapRunTimes[node.Id]++
+					mapRunTimes[node.ID]++
 				}
 
 				t.Log(mapRunTimes["1"])

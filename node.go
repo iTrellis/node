@@ -4,18 +4,20 @@
 
 package node
 
-type NodeType uint8
+// Type define node type
+type Type uint8
 
 // NodeType
 const (
-	NodeTypeDirect NodeType = iota
+	NodeTypeDirect Type = iota
 	NodeTypeRandom
 	NodeTypeConsistent
 )
 
+// Node params for a node
 type Node struct {
 	// for recognize node with input id
-	Id string
+	ID string
 	// node's probability weight
 	Weight uint32
 	// node's value
@@ -24,7 +26,8 @@ type Node struct {
 	number uint32
 }
 
-type NodeManager interface {
+// Manager node manager functions defines.
+type Manager interface {
 	// adds a node to the node ring.
 	Add(node *Node)
 	// get the node responsible for the data key.
@@ -39,7 +42,8 @@ type NodeManager interface {
 	IsEmpty() bool
 }
 
-func New(nt NodeType, name string) NodeManager {
+// New get node manager by node type
+func New(nt Type, name string) Manager {
 	switch nt {
 	case NodeTypeDirect:
 		return NewDirect(name)

@@ -31,12 +31,12 @@ func TestDirect(t *testing.T) {
 		Convey("when initial nodes and remove nodes", func() {
 			d.Add(nil)
 			d.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 1,
 				Value:  "test1",
 			})
 			d.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 2,
 				Value:  "test1",
 			})
@@ -48,14 +48,14 @@ func TestDirect(t *testing.T) {
 				So(ok, ShouldBeFalse)
 			})
 		})
-		Convey("when initial nodes and remove all nodes by ids", func() {
+		Convey("when initial nodes and remove all nodes by IDs", func() {
 			d.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 1,
 				Value:  "test1",
 			})
 			d.Add(&node.Node{
-				Id:     "2",
+				ID:     "2",
 				Weight: 2,
 				Value:  "test2",
 			})
@@ -63,7 +63,7 @@ func TestDirect(t *testing.T) {
 				d.PrintNodes()
 				So(d.IsEmpty(), ShouldBeFalse)
 				value, ok := d.NodeFor(key)
-				So(value.Id, ShouldEqual, "2")
+				So(value.ID, ShouldEqual, "2")
 				So(value.Value, ShouldEqual, "test2")
 				So(ok, ShouldBeTrue)
 			})

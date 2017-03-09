@@ -23,7 +23,8 @@ type radmon struct {
 	sync.RWMutex
 }
 
-func NewRadmon(name string) NodeManager {
+// NewRadmon get random node manager
+func NewRadmon(name string) Manager {
 	if name == "" {
 		return nil
 	}
@@ -48,7 +49,7 @@ func (p *radmon) add(pNode *Node) {
 		p.nodes = make(map[string]*Node, 0)
 	}
 
-	p.nodes[pNode.Id] = pNode
+	p.nodes[pNode.ID] = pNode
 
 	p.updateRings()
 }

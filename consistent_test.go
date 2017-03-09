@@ -33,12 +33,12 @@ func TestConsistent(t *testing.T) {
 		Convey("when initial nodes and remove nodes", func() {
 			c.Add(nil)
 			c.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 1,
 				Value:  "test1",
 			})
 			c.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 2,
 				Value:  "test1",
 			})
@@ -50,14 +50,14 @@ func TestConsistent(t *testing.T) {
 				So(ok, ShouldBeFalse)
 			})
 		})
-		Convey("when initial nodes and remove all nodes by ids", func() {
+		Convey("when initial nodes and remove all nodes by IDs", func() {
 			c.Add(&node.Node{
-				Id:     "1",
+				ID:     "1",
 				Weight: 1,
 				Value:  "test1",
 			})
 			c.Add(&node.Node{
-				Id:     "2",
+				ID:     "2",
 				Weight: 2,
 				Value:  "test2",
 			})
@@ -84,12 +84,12 @@ func TestConsistent(t *testing.T) {
 	Convey("get normal node", t, func() {
 		c := node.New(node.NodeTypeConsistent, "test")
 		c.Add(&node.Node{
-			Id:     "1",
+			ID:     "1",
 			Weight: 2,
 			Value:  "test1",
 		})
 		c.Add(&node.Node{
-			Id:     "2",
+			ID:     "2",
 			Weight: 10,
 			Value:  "test2",
 		})

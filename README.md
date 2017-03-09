@@ -29,7 +29,7 @@ dierct to get last added node, node's wight is unavailable
 ```go
 type Node struct {
 	// for recognize node with input id
-	Id string
+	ID string
 	// node's probability weight
 	Weight uint32
 	// node's value

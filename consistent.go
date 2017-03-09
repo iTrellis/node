@@ -27,7 +27,8 @@ type consistent struct {
 	sync.RWMutex
 }
 
-func NewConsistent(name string) NodeManager {
+// NewConsistent get consistent node manager
+func NewConsistent(name string) Manager {
 	if name == "" {
 		return nil
 	}
@@ -55,16 +56,16 @@ func (p *consistent) add(pNode *Node) {
 		p.hashes = make(map[uint32]*Node, 0)
 	}
 
-	node := p.nodes[pNode.Id]
+	node := p.nodes[pNode.ID]
 
 	if node != nil {
-		p.removeByID(pNode.Id)
+		p.removeByID(pNode.ID)
 	}
 
-	p.nodes[pNode.Id] = pNode
+	p.nodes[pNode.ID] = pNode
 
 	for i := uint32(0); i < pNode.Weight; i++ {
-		crc32Hash := p.genKey(pNode.Id, int(i+1))
+		crc32Hash := p.genKey(pNode.ID, int(i+1))
 		if p.hashes[crc32Hash] == nil {
 			vnode := *pNode
 			vnode.number = i + 1
@@ -135,7 +136,7 @@ func (p *consistent) removeByID(id string) {
 		if value := p.hashes[crc32Hash]; value == nil {
 			continue
 		} else {
-			if value.Id != id {
+			if value.ID != id {
 				continue
 			}
 		}
