@@ -13,7 +13,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	itypes "github.com/go-trellis/formats/inner-types"
+	"github.com/go-trellis/formats"
 )
 
 type consistent struct {
@@ -21,7 +21,7 @@ type consistent struct {
 	nodes  map[string]*Node
 	hashes map[uint32]*Node
 
-	rings itypes.Uint32s
+	rings formats.Uint32s
 	count int64
 
 	sync.RWMutex
