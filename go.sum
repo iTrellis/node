@@ -1,5 +1,13 @@
+github.com/go-akka/configuration v0.0.0-20190109144621-439b15a79294 h1:ZERecv3t4Wm0FDHw7evoTBJLFl/j092rEF4D1AoRIKY=
+github.com/go-akka/configuration v0.0.0-20190109144621-439b15a79294/go.mod h1:19bUnum2ZAeftfwwLZ/wRe7idyfoW2MfmXO464Hrfbw=
 github.com/go-trellis/formats v0.0.0-20190601145816-984e61c55d2c h1:w9f3YONZBtIYylaeIra7cREDSZ7O+QIx/T+pFdJIY24=
 github.com/go-trellis/formats v0.0.0-20190601145816-984e61c55d2c/go.mod h1:wugDQfQKiQAP1uvo1vn9xdxld57ehL94JL3ST4gL8wM=
+github.com/gogap/config v0.0.0-20180418140818-a1522129698c h1:oVHVSEbuanJ2BEjyLUlopElV06URa2mvT1oQSnu7zPI=
+github.com/gogap/config v0.0.0-20180418140818-a1522129698c/go.mod h1:oBHg+chXMdjU9A6Dfj0vg/1ir/isLEGXftHwj70ZsV8=
+github.com/gogap/errors v0.0.0-20160523102334-149c546090d0 h1:VqIkkZjLjkDBqAGm0tvLRNMPiFTwNJjmQxB50DwSCRA=
+github.com/gogap/errors v0.0.0-20160523102334-149c546090d0/go.mod h1:tbRYYYC7g/H7QlCeX0Z2zaThWKowF4QQCFIsGgAsqRo=
+github.com/gogap/stack v0.0.0-20150131034635-fef68dddd4f8 h1:AuxION6c7in+AsPmFjQTUKT6/o1suT8XEEpfU0pWsHA=
+github.com/gogap/stack v0.0.0-20150131034635-fef68dddd4f8/go.mod h1:6q1WEv2BiAO4FSdwLQTJbWQYAn1/qDNJHUGJNXCj9kM=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGaHF6qqu48+N2wcFQ5qg5FXgOdqsJ5d8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=

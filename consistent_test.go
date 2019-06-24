@@ -1,5 +1,4 @@
 // GNU GPL v3 License
-
 // Copyright (c) 2017 github.com:go-trellis
 
 package node_test
@@ -30,18 +29,12 @@ func TestConsistent(t *testing.T) {
 			})
 		})
 
+		mapM, err := node.NewNodesFromConfig("sample.conf")
+		So(err, ShouldBeNil)
+		c = mapM["consistent_test1"]
+
 		Convey("when initial nodes and remove nodes", func() {
 			c.Add(nil)
-			c.Add(&node.Node{
-				ID:     "1",
-				Weight: 1,
-				Value:  "test1",
-			})
-			c.Add(&node.Node{
-				ID:     "1",
-				Weight: 2,
-				Value:  "test1",
-			})
 			c.Remove()
 			Convey("will return nil", func() {
 				So(c.IsEmpty(), ShouldBeTrue)
@@ -82,17 +75,9 @@ func TestConsistent(t *testing.T) {
 	})
 
 	Convey("get normal node", t, func() {
-		c := node.New(node.NodeTypeConsistent, "test")
-		c.Add(&node.Node{
-			ID:     "1",
-			Weight: 2,
-			Value:  "test1",
-		})
-		c.Add(&node.Node{
-			ID:     "2",
-			Weight: 10,
-			Value:  "test2",
-		})
+		mapM, err := node.NewNodesFromConfig("sample.conf")
+		So(err, ShouldBeNil)
+		c := mapM["test"]
 
 		Convey("when initial normal configure", func() {
 			Convey("will return normal node", func() {
@@ -103,7 +88,6 @@ func TestConsistent(t *testing.T) {
 			})
 
 			Convey("get my test key", func() {
-				c.PrintNodes()
 				value, ok := c.NodeFor("my test1")
 				So(value.Value, ShouldEqual, "test1")
 				So(ok, ShouldBeTrue)

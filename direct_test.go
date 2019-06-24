@@ -1,5 +1,4 @@
 // GNU GPL v3 License
-
 // Copyright (c) 2017 github.com:go-trellis
 
 package node_test
@@ -60,7 +59,6 @@ func TestDirect(t *testing.T) {
 				Value:  "test2",
 			})
 			Convey("will return normal node", func() {
-				d.PrintNodes()
 				So(d.IsEmpty(), ShouldBeFalse)
 				value, ok := d.NodeFor(key)
 				So(value.ID, ShouldEqual, "2")
@@ -73,7 +71,6 @@ func TestDirect(t *testing.T) {
 			d.RemoveByID("1")
 			d.RemoveByID("1")
 			Convey("will return nil", func() {
-				d.PrintNodes()
 				So(d.IsEmpty(), ShouldBeTrue)
 				value, ok := d.NodeFor(key)
 				So(value, ShouldBeNil)

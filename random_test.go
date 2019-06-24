@@ -1,5 +1,4 @@
 // GNU GPL v3 License
-
 // Copyright (c) 2017 github.com:go-trellis
 
 package node_test
@@ -37,16 +36,9 @@ func TestRandom(t *testing.T) {
 		})
 
 		Convey("when initial normal nodes and remove nodes", func() {
-			r.Add(&node.Node{
-				ID:     "1",
-				Weight: 2,
-				Value:  "test1",
-			})
-			r.Add(&node.Node{
-				ID:     "2",
-				Weight: 10,
-				Value:  "test2",
-			})
+			mapM, err := node.NewNodesFromConfig("sample.conf")
+			So(err, ShouldBeNil)
+			r = mapM["random_test1"]
 			r.Remove()
 			Convey("will return nil", func() {
 				So(r.IsEmpty(), ShouldBeTrue)
@@ -56,16 +48,9 @@ func TestRandom(t *testing.T) {
 			})
 		})
 		Convey("when initial normal nodes and remove all nodes by IDs", func() {
-			r.Add(&node.Node{
-				ID:     "1",
-				Weight: 2,
-				Value:  "test1",
-			})
-			r.Add(&node.Node{
-				ID:     "2",
-				Weight: 10,
-				Value:  "test2",
-			})
+			mapM, err := node.NewNodesFromConfig("sample.conf")
+			So(err, ShouldBeNil)
+			r = mapM["random_test1"]
 			Convey("will return normal node", func() {
 				So(r.IsEmpty(), ShouldBeFalse)
 				node, ok := r.NodeFor()
@@ -100,18 +85,9 @@ func TestRandom(t *testing.T) {
 	})
 
 	Convey("get normal node", t, func() {
-		r := node.NewRadmon("random")
-		r.Add(&node.Node{
-			ID:     "1",
-			Weight: 20,
-			Value:  "test1",
-		})
-		r.Add(&node.Node{
-			ID:     "2",
-			Weight: 80,
-			Value:  "test2",
-		})
-		r.PrintNodes()
+		mapM, err := node.NewNodesFromConfig("sample.conf")
+		So(err, ShouldBeNil)
+		r := mapM["random_test2"]
 		Convey("test run times", func() {
 			Convey("ID_1:ID_2 vnode_number 20:80", func() {
 				for i := 0; i < runTimes; i++ {

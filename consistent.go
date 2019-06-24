@@ -1,5 +1,4 @@
 // GNU GPL v3 License
-
 // Copyright (c) 2017 github.com:go-trellis
 
 package node
@@ -66,6 +65,7 @@ func (p *consistent) add(pNode *Node) {
 
 	for i := uint32(0); i < pNode.Weight; i++ {
 		crc32Hash := p.genKey(pNode.ID, int(i+1))
+		println(pNode.ID, i, crc32Hash)
 		if p.hashes[crc32Hash] == nil {
 			vnode := *pNode
 			vnode.number = i + 1

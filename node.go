@@ -1,5 +1,4 @@
 // GNU GPL v3 License
-
 // Copyright (c) 2017 github.com:go-trellis
 
 package node
@@ -21,7 +20,7 @@ type Node struct {
 	// node's probability weight
 	Weight uint32
 	// node's value
-	Value interface{}
+	Value string
 
 	number uint32
 }
