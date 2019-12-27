@@ -4,37 +4,34 @@
 package node
 
 import (
-	"fmt"
-
-	"github.com/gogap/config"
+	"github.com/go-trellis/config"
 )
 
 // NewNodesFromConfig 同步配置文件
 func NewNodesFromConfig(filepath string) (map[string]Manager, error) {
-	return NewNodes(config.NewConfig(config.ConfigFile(filepath)))
+	cfg, err := config.NewConfigOptions(config.OptionFile(filepath))
+	if err != nil {
+		return nil, err
+	}
+	return NewNodes(cfg)
 }
 
 // NewNodes 增加Nodes节点
-func NewNodes(cfg config.Configuration) (map[string]Manager, error) {
+func NewNodes(cfg config.Config) (ms map[string]Manager, err error) {
 	mapManager := make(map[string]Manager)
-	for _, key := range cfg.GetConfig("node").Keys() {
-		itemCfg := cfg.GetConfig("node." + key)
-		fmt.Println(Type(itemCfg.GetInt32("type")), key)
-		m := New(Type(itemCfg.GetInt32("type")), key)
 
-		nodesCfg := itemCfg.GetConfig("nodes")
-		for _, nodeID := range nodesCfg.Keys() {
+	valConfigs := cfg.GetValuesConfig("node")
+	for _, key := range valConfigs.GetKeys() {
+		m := New(Type(valConfigs.GetInt(key+".type")), key)
+		nodesCfg := valConfigs.GetValuesConfig(key + ".nodes")
+
+		for _, nKey := range nodesCfg.GetKeys() {
 			item := &Node{
-				ID:     nodeID,
-				Weight: uint32(nodesCfg.GetInt32(nodeID + ".weight")),
-				Value:  nodesCfg.GetString(nodeID + ".value"),
+				ID:     nKey,
+				Value:  nodesCfg.GetString(nKey + ".value"),
+				Weight: uint32(nodesCfg.GetInt(nKey + ".weight")),
 			}
-			fmt.Println(key, item)
-			m.Add(&Node{
-				ID:     nodeID,
-				Weight: uint32(nodesCfg.GetInt32(nodeID + ".weight")),
-				Value:  nodesCfg.GetString(nodeID + ".value"),
-			})
+			m.Add(item)
 		}
 		mapManager[key] = m
 	}

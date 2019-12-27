@@ -45,7 +45,7 @@ func (p *radmon) Add(node *Node) {
 
 func (p *radmon) add(pNode *Node) {
 	if p.nodes == nil {
-		p.nodes = make(map[string]*Node, 0)
+		p.nodes = make(map[string]*Node)
 	}
 
 	p.nodes[pNode.ID] = pNode
@@ -103,7 +103,7 @@ func (p *radmon) NodeFor(...string) (*Node, bool) {
 }
 
 func (p *radmon) updateRings() {
-	p.rings = make(map[int64]*Node, 0)
+	p.rings = make(map[int64]*Node)
 	p.count = 0
 	for _, v := range p.nodes {
 

@@ -76,7 +76,6 @@ func (p *direct) removeByID(id string) {
 	if p.node.ID == id {
 		p.node = nil
 	}
-	return
 }
 
 func (p *direct) PrintNodes() {

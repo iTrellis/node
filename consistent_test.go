@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/go-trellis/node"
-
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -29,7 +28,7 @@ func TestConsistent(t *testing.T) {
 			})
 		})
 
-		mapM, err := node.NewNodesFromConfig("sample.conf")
+		mapM, err := node.NewNodesFromConfig("sample.json")
 		So(err, ShouldBeNil)
 		c = mapM["consistent_test1"]
 
@@ -75,7 +74,7 @@ func TestConsistent(t *testing.T) {
 	})
 
 	Convey("get normal node", t, func() {
-		mapM, err := node.NewNodesFromConfig("sample.conf")
+		mapM, err := node.NewNodesFromConfig("sample.json")
 		So(err, ShouldBeNil)
 		c := mapM["test"]
 
@@ -98,9 +97,9 @@ func TestConsistent(t *testing.T) {
 			})
 		})
 
-		Convey("when remove nodes by 1", func() {
+		Convey("when remove nodes by node1", func() {
 			c.RemoveByID("1")
-			Convey("will return node 2", func() {
+			Convey("will return node node2", func() {
 				So(c.IsEmpty(), ShouldBeFalse)
 
 				value, ok := c.NodeFor("my test1")

@@ -36,7 +36,7 @@ func TestRandom(t *testing.T) {
 		})
 
 		Convey("when initial normal nodes and remove nodes", func() {
-			mapM, err := node.NewNodesFromConfig("sample.conf")
+			mapM, err := node.NewNodesFromConfig("sample.json")
 			So(err, ShouldBeNil)
 			r = mapM["random_test1"]
 			r.Remove()
@@ -48,7 +48,7 @@ func TestRandom(t *testing.T) {
 			})
 		})
 		Convey("when initial normal nodes and remove all nodes by IDs", func() {
-			mapM, err := node.NewNodesFromConfig("sample.conf")
+			mapM, err := node.NewNodesFromConfig("sample.json")
 			So(err, ShouldBeNil)
 			r = mapM["random_test1"]
 			Convey("will return normal node", func() {
@@ -57,11 +57,10 @@ func TestRandom(t *testing.T) {
 				So(node, ShouldNotBeNil)
 				So(ok, ShouldBeTrue)
 			})
-			r.RemoveByID("2")
-			r.RemoveByID("2")
-			r.RemoveByID("1")
-			r.RemoveByID("1")
-			r.RemoveByID("1")
+			r.RemoveByID("node2")
+			r.RemoveByID("node2")
+			r.RemoveByID("node1")
+			r.RemoveByID("node1")
 			Convey("will return nil", func() {
 				So(r.IsEmpty(), ShouldBeTrue)
 				node, ok := r.NodeFor()
@@ -85,11 +84,11 @@ func TestRandom(t *testing.T) {
 	})
 
 	Convey("get normal node", t, func() {
-		mapM, err := node.NewNodesFromConfig("sample.conf")
+		mapM, err := node.NewNodesFromConfig("sample.json")
 		So(err, ShouldBeNil)
 		r := mapM["random_test2"]
 		Convey("test run times", func() {
-			Convey("ID_1:ID_2 vnode_number 20:80", func() {
+			Convey("node1:node2 vnode_number 20:80", func() {
 				for i := 0; i < runTimes; i++ {
 					node, _ := r.NodeFor("")
 					mapRunTimes[node.ID]++

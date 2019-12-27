@@ -1,0 +1,40 @@
+# GNU GPL v3 License
+# Copyright (c) 2017 github.com:go-trellis
+
+node:
+  random_test1:
+    type: 1
+    nodes:
+      node1:
+        weight: 2
+        value: test1
+      node2:
+        weight: 10
+        value: test2
+  random_test2:
+    type: 1
+    nodes:
+      "1":
+        weight: 20
+        value: test1
+      "2":
+        weight: 80
+        value: test2
+  consistent_test1:
+    type: 2
+    nodes:
+      "1":
+        weight: 1
+        value: test1
+      "2":
+        weight: 2
+        value: test2
+  test:
+    type: 2
+    nodes:
+      "1":
+        weight: 2
+        value: test1
+      "2":
+        weight: 10
+        value: test2

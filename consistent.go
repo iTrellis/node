@@ -12,7 +12,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/go-trellis/formats"
+	"github.com/go-trellis/common/formats"
 )
 
 type consistent struct {
@@ -49,10 +49,10 @@ func (p *consistent) Add(node *Node) {
 
 func (p *consistent) add(pNode *Node) {
 	if p.nodes == nil {
-		p.nodes = make(map[string]*Node, 0)
+		p.nodes = make(map[string]*Node)
 	}
 	if p.hashes == nil {
-		p.hashes = make(map[uint32]*Node, 0)
+		p.hashes = make(map[uint32]*Node)
 	}
 
 	node := p.nodes[pNode.ID]
@@ -65,7 +65,6 @@ func (p *consistent) add(pNode *Node) {
 
 	for i := uint32(0); i < pNode.Weight; i++ {
 		crc32Hash := p.genKey(pNode.ID, int(i+1))
-		println(pNode.ID, i, crc32Hash)
 		if p.hashes[crc32Hash] == nil {
 			vnode := *pNode
 			vnode.number = i + 1
@@ -75,8 +74,6 @@ func (p *consistent) add(pNode *Node) {
 	}
 
 	p.updateRings()
-
-	return
 }
 
 func (p *consistent) NodeFor(keys ...string) (*Node, bool) {

@@ -1,0 +1,56 @@
+{
+    "node": {
+        "random_test1": {
+            "type": 1,
+            "nodes": {
+                "node1": {
+                    "value": "test1",
+                    "weight": 2
+                },
+                "node2": {
+                    "value": "test2",
+                    "weight": 10
+                }
+            }
+        },
+        "random_test2": {
+            "type": 1,
+            "nodes": {
+                "1": {
+                    "value": "test1",
+                    "weight": 20
+                },
+                "2": {
+                    "value": "test2",
+                    "weight": 80
+                }
+            }
+        },
+        "consistent_test1": {
+            "type": 2,
+            "nodes": {
+                "1": {
+                    "value": "test1",
+                    "weight": 1
+                },
+                "2": {
+                    "value": "test2",
+                    "weight": 2
+                }
+            }
+        },
+        "test": {
+            "type": 2,
+            "nodes": {
+                "1": {
+                    "value": "test1",
+                    "weight": 2
+                },
+                "2": {
+                    "value": "test2",
+                    "weight": 10
+                }
+            }
+        }
+    }
+}
