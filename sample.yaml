@@ -20,6 +20,8 @@ node:
       "2":
         weight: 80
         value: test2
+        metadata:
+          a: b
   consistent_test1:
     type: 2
     nodes:

@@ -3,6 +3,10 @@
 
 package node
 
+import (
+	"github.com/go-trellis/config"
+)
+
 // Type define node type
 type Type uint8
 
@@ -21,6 +25,8 @@ type Node struct {
 	Weight uint32
 	// node's value
 	Value string
+	// kvs for meta data
+	Metadata config.Options
 
 	number uint32
 }

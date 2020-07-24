@@ -22,7 +22,10 @@
                 },
                 "2": {
                     "value": "test2",
-                    "weight": 80
+                    "weight": 80,
+                    "metadata": {
+                        "a": "b"
+                    }
                 }
             }
         },
