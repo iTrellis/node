@@ -11,32 +11,38 @@ a nodes ring for a key to get node
 
 ### Direct
 
-dierct to get last added node, node's wight is unavailable
+> dierct to get last added node, node's wight is unavailable
 
 
 ### Consistent hashing
 
-* [WIKI](https://en.wikipedia.org/wiki/Consistent_hashing)
-* [consistent:test](consistent_test.go)
+> [WIKI](https://en.wikipedia.org/wiki/Consistent_hashing)
 
 ### Random
 
-* [random:test](random_test.go)
+> to get the node by random
 
 
 ## Usage
 
 ```go
+
+// Node params for a node
 type Node struct {
 	// for recognize node with input id
 	ID string
 	// node's probability weight
 	Weight uint32
 	// node's value
-	Value interface{}
+	Value string
+	// kvs for meta data
+	Metadata config.Options
+
+	number uint32
 }
 
-type NodeManager interface {
+// Manager node manager functions defines.
+type Manager interface {
 	// adds a node to the node ring.
 	Add(node *Node)
 	// get the node responsible for the data key.
