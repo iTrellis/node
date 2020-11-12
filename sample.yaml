@@ -31,6 +31,18 @@ node:
       "2":
         weight: 2
         value: test2
+  roundrobin_test1:
+    type: 3
+    nodes:
+      "1":
+        value: test1
+      "2":
+        value: test2
+      "3":
+        value: test3
+        metadata:
+          a: b
+          c: d
   test:
     type: 2
     nodes:

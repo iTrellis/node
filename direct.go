@@ -5,6 +5,7 @@ package node
 
 import (
 	"fmt"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"unsafe"
@@ -18,11 +19,11 @@ type direct struct {
 }
 
 // NewDirect get direct node manager
-func NewDirect(name string) Manager {
-	if name == "" {
-		return nil
+func NewDirect(name string) (Manager, error) {
+	if name = strings.TrimSpace(name); name == "" {
+		return nil, fmt.Errorf("name should not be nil")
 	}
-	return &direct{Name: name}
+	return &direct{Name: name}, nil
 }
 
 func (p *direct) IsEmpty() bool {

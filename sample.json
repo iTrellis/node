@@ -42,6 +42,17 @@
                 }
             }
         },
+        "roundrobin_test1": {
+            "type": 3,
+            "nodes": {
+                "1": {
+                    "value": "test1"
+                },
+                "2": {
+                    "value": "test2"
+                }
+            }
+        },
         "test": {
             "type": 2,
             "nodes": {

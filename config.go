@@ -22,7 +22,10 @@ func NewNodes(cfg config.Config) (ms map[string]Manager, err error) {
 
 	valConfigs := cfg.GetValuesConfig("node")
 	for _, key := range valConfigs.GetKeys() {
-		m := New(Type(valConfigs.GetInt(key+".type")), key)
+		m, err := New(Type(valConfigs.GetInt(key+".type")), key)
+		if err != nil {
+			return nil, err
+		}
 		nodesCfg := valConfigs.GetValuesConfig(key + ".nodes")
 
 		for _, nKey := range nodesCfg.GetKeys() {

@@ -27,11 +27,11 @@ type consistent struct {
 }
 
 // NewConsistent get consistent node manager
-func NewConsistent(name string) Manager {
-	if name == "" {
-		return nil
+func NewConsistent(name string) (Manager, error) {
+	if name = strings.TrimSpace(name); name == "" {
+		return nil, fmt.Errorf("name should not be nil")
 	}
-	return &consistent{Name: name}
+	return &consistent{Name: name}, nil
 }
 
 func (p *consistent) IsEmpty() bool {

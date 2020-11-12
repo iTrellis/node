@@ -6,6 +6,7 @@ package node
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -23,11 +24,11 @@ type radmon struct {
 }
 
 // NewRadmon get random node manager
-func NewRadmon(name string) Manager {
-	if name == "" {
-		return nil
+func NewRadmon(name string) (Manager, error) {
+	if name = strings.TrimSpace(name); name == "" {
+		return nil, fmt.Errorf("name should not be nil")
 	}
-	return &radmon{Name: name}
+	return &radmon{Name: name}, nil
 }
 
 func (p *radmon) IsEmpty() bool {

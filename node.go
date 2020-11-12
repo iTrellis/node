@@ -4,6 +4,8 @@
 package node
 
 import (
+	"fmt"
+
 	"github.com/go-trellis/config"
 )
 
@@ -15,18 +17,19 @@ const (
 	NodeTypeDirect Type = iota
 	NodeTypeRandom
 	NodeTypeConsistent
+	NodeTypeRoundRobin
 )
 
 // Node params for a node
 type Node struct {
 	// for recognize node with input id
-	ID string
-	// node's probability weight
-	Weight uint32
+	ID string `yaml:"id" json:"id"`
+	// node's probability weight, roundrobin does not support
+	Weight uint32 `yaml:"weight" json:"weight"`
 	// node's value
-	Value string
+	Value string `yaml:"value" json:"value"`
 	// kvs for meta data
-	Metadata config.Options
+	Metadata config.Options `yaml:"options" json:"options"`
 
 	number uint32
 }
@@ -48,7 +51,7 @@ type Manager interface {
 }
 
 // New get node manager by node type
-func New(nt Type, name string) Manager {
+func New(nt Type, name string) (Manager, error) {
 	switch nt {
 	case NodeTypeDirect:
 		return NewDirect(name)
@@ -56,7 +59,9 @@ func New(nt Type, name string) Manager {
 		return NewRadmon(name)
 	case NodeTypeConsistent:
 		return NewConsistent(name)
+	case NodeTypeRoundRobin:
+		return NewRoundRobin(name)
 	default:
-		return nil
+		return nil, fmt.Errorf("not supperted type: %d", nt)
 	}
 }
