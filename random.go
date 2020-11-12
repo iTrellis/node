@@ -85,18 +85,16 @@ func (p *radmon) removeByID(id string) {
 		return
 	}
 
-	p.count -= int64(node.Weight)
 	delete(p.nodes, id)
 	p.updateRings()
 }
 
 func (p *radmon) NodeFor(...string) (*Node, bool) {
+	p.RLock()
+	defer p.RUnlock()
 	if p.IsEmpty() {
 		return nil, false
 	}
-
-	p.RLock()
-	defer p.RUnlock()
 
 	rand.Seed(time.Now().UnixNano())
 
@@ -105,16 +103,15 @@ func (p *radmon) NodeFor(...string) (*Node, bool) {
 
 func (p *radmon) updateRings() {
 	p.rings = make(map[int64]*Node)
-	p.count = 0
 	for _, v := range p.nodes {
 
 		for i := 0; i < int(v.Weight); i++ {
 			ring := *v
 			ring.number = uint32(p.count)
 			p.rings[p.count] = &ring
-			p.count++
 		}
 	}
+	p.count = int64(len(p.rings))
 }
 
 func (p *radmon) PrintNodes() {
