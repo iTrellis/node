@@ -4,7 +4,6 @@ a nodes ring for a key to get node
 
 ## Build
 
-* [![Build Status](https://travis-ci.org/go-trellis/node.png)](https://travis-ci.org/go-trellis/node)
 * [![GoDoc](http://godoc.org/github.com/go-trellis/node?status.svg)](http://godoc.org/github.com/go-trellis/node)
 
 ## Get Node Methods
@@ -64,6 +63,7 @@ type Manager interface {
 	directNode := node.New(node.NodeTypeDirect, "direct")
 	randomNode := node.New(node.NodeTypeRandom, "random")
 	consistentNode := node.New(node.NodeTypeConsistent, "consistent")
+	roundrobinNode := node.New(node.NodeTypeRoundRobin, "roundrobin")
 ```
 
 Or 
@@ -72,5 +72,6 @@ Or
 	directNode := node.NewDirect("direct")
 	randomNode := node.NewRandom("random")
 	consistentNode := node.NewConsistent("consistent")
+	roundrobinNode := node.NewRoundRobin("roundrobin")
 ```
 
