@@ -60,18 +60,18 @@ type Manager interface {
 ### New a node manager
 
 ```go
-	directNode := node.New(node.NodeTypeDirect, "direct")
-	randomNode := node.New(node.NodeTypeRandom, "random")
-	consistentNode := node.New(node.NodeTypeConsistent, "consistent")
-	roundrobinNode := node.New(node.NodeTypeRoundRobin, "roundrobin")
+	directNode, _ := node.New(node.NodeTypeDirect, "direct")
+	randomNode, _ := node.New(node.NodeTypeRandom, "random")
+	consistentNode, _ := node.New(node.NodeTypeConsistent, "consistent")
+	roundrobinNode, _ := node.New(node.NodeTypeRoundRobin, "roundrobin")
 ```
 
 Or 
 
 ```go
-	directNode := node.NewDirect("direct")
-	randomNode := node.NewRandom("random")
-	consistentNode := node.NewConsistent("consistent")
-	roundrobinNode := node.NewRoundRobin("roundrobin")
+	directNode, _ := node.NewDirect("direct")
+	randomNode, _ := node.NewRandom("random")
+	consistentNode, _ := node.NewConsistent("consistent")
+	roundrobinNode, _ := node.NewRoundRobin("roundrobin")
 ```
 
