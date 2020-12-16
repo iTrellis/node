@@ -69,7 +69,6 @@ func (p *consistent) add(pNode *Node) {
 			vnode := *pNode
 			vnode.number = i + 1
 			p.hashes[crc32Hash] = &vnode
-			// p.count++
 		}
 	}
 
@@ -139,7 +138,6 @@ func (p *consistent) removeByID(id string) {
 			}
 		}
 		delete(p.hashes, crc32Hash)
-		// p.count--
 	}
 
 	delete(p.nodes, id)

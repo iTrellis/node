@@ -98,20 +98,23 @@ func (p *radmon) NodeFor(...string) (*Node, bool) {
 
 	rand.Seed(time.Now().UnixNano())
 
-	return p.rings[rand.Int63n(p.count-1)], true
+	return p.rings[rand.Int63n(p.count)], true
 }
 
 func (p *radmon) updateRings() {
 	p.rings = make(map[int64]*Node)
+
+	p.count = 0
 	for _, v := range p.nodes {
 
 		for i := 0; i < int(v.Weight); i++ {
 			ring := *v
-			ring.number = uint32(p.count)
+			ring.number = uint32(i + 1)
 			p.rings[p.count] = &ring
+
+			p.count++
 		}
 	}
-	p.count = int64(len(p.rings))
 }
 
 func (p *radmon) PrintNodes() {
