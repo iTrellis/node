@@ -4,7 +4,7 @@ a nodes ring for a key to get node
 
 ## Build
 
-* [![GoDoc](http://godoc.org/github.com/go-trellis/node?status.svg)](http://godoc.org/github.com/go-trellis/node)
+* [![GoDoc](http://godoc.org/github.com/iTrellis/node?status.svg)](http://godoc.org/github.com/iTrellis/node)
 
 ## Get Node Methods
 
