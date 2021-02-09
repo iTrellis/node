@@ -48,6 +48,23 @@ type Node struct {
 	number uint32
 }
 
+// Get get value from metadata
+func (p *Node) Get(key string) (interface{}, bool) {
+	if p.Metadata == nil {
+		return nil, false
+	}
+	value, ok := p.Metadata[key]
+	return value, ok
+}
+
+// Set set kv pair from metadata
+func (p *Node) Set(key string, value interface{}) {
+	if p.Metadata == nil {
+		p.Metadata = config.Options{}
+	}
+	p.Metadata[key] = value
+}
+
 // Manager node manager functions defines.
 type Manager interface {
 	// adds a node to the node ring.
@@ -64,7 +81,7 @@ type Manager interface {
 	IsEmpty() bool
 }
 
-// New get node manager by node type
+// New new node manager by node type, it has no nodes
 func New(nt Type, name string) (Manager, error) {
 	switch nt {
 	case NodeTypeDirect:
@@ -78,4 +95,21 @@ func New(nt Type, name string) (Manager, error) {
 	default:
 		return nil, fmt.Errorf("not supperted type: %d", nt)
 	}
+}
+
+// NewWithNodes new node manager by node type with nodes
+func NewWithNodes(nt Type, name string, nodes []*Node) (Manager, error) {
+	if len(nodes) == 0 {
+		return nil, fmt.Errorf("nodes should at least one")
+	}
+
+	m, err := New(nt, name)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, n := range nodes {
+		m.Add(n)
+	}
+	return m, nil
 }
