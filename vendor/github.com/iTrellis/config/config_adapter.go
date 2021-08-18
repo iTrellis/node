@@ -18,7 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package config
 
 import (
-	"encoding/json"
 	"math/big"
 	"reflect"
 	"strings"
@@ -26,7 +25,8 @@ import (
 	"time"
 
 	"github.com/iTrellis/common/formats"
-	"gopkg.in/yaml.v2"
+	"github.com/iTrellis/common/json"
+	"gopkg.in/yaml.v3"
 )
 
 const (
@@ -106,7 +106,7 @@ func (p *AdapterConfig) init(opts ...OptionFunc) (err error) {
 		return
 	}
 
-	return p.copyDollarSymbol()
+	return p.copyDollarSymbol("", &p.configs)
 }
 
 // GetKeys get map keys
@@ -423,18 +423,4 @@ func (p *AdapterConfig) Dump() (bs []byte, err error) {
 // Copy return a copy
 func (p *AdapterConfig) Copy() Config {
 	return p.copy()
-}
-
-func (p *AdapterConfig) copyDollarSymbol() error {
-	p.locker.RLock()
-	defer p.locker.RUnlock()
-
-	switch p.readerType {
-	case ReaderTypeJSON:
-		return p.copyJSONDollarSymbol("", &p.configs)
-	case ReaderTypeYAML:
-		return p.copyYAMLDollarSymbol(&p.configs)
-	}
-
-	return nil
 }
