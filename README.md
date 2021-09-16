@@ -1,5 +1,7 @@
 # node
 
+Achieve this repo, move it into [github.com/iTellis/common](github.com/iTellis/common)
+
 a nodes ring for a key to get node
 
 ## Build
